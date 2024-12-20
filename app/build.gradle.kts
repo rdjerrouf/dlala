@@ -2,24 +2,17 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-}
-plugins {
-    id 'com.google.gms.google-services'
-}
-
-dependencies {
-    implementation 'com.google.firebase:firebase-auth:21.0.3' // Or latest version
-    implementation 'com.google.firebase:firebase-firestore:24.0.2' // Or latest version
+    id("com.google.gms.google-services") // Firebase plugin
 }
 
 android {
     namespace = "com.example.listingapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.listingapp"
+        applicationId = "com.example.listingApp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -35,20 +28,27 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
 }
 
 dependencies {
+    // Firebase dependencies
+    implementation("com.google.firebase:firebase-auth:21.0.3") // Or latest version
+    implementation("com.google.firebase:firebase-firestore:24.0.2") // Or latest version
 
+    // Other dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
